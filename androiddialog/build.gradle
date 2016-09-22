@@ -23,3 +23,21 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
 }
+
+/*
+group = 'br.com.xisvaldo'
+version = '1.0-SNAPSHOT'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository( url: "http://repositoryURL") {
+                authentication(userName: "user", password: "senha")
+            }
+        }
+    }
+}
+
+USAR gradle uploadArchives para gerar o aar em repositorio de libs
+
+*/
