@@ -1,16 +1,17 @@
 # androiddialog
 
 Uso:
-AndroidDialog.show(Activity.this, AndroidDialog.Type.ERROR, "Title", "Message", handler);
+
+    AndroidDialog.show(Activity.this, AndroidDialog.Type.ERROR, "Title", "Message", handler);
 
 Onde handler:
 
-        final Handler handler = new Handler() {
+    final Handler handler = new Handler() {
 
             @Override
             public void handleMessage(Message msg) {
                 if (msg != null) {
-
+        
                     if (msg.what == AndroidDialog.Result.OK.ordinal()) {
                         Toast.makeText(Activity.this, "BOTÃO OK", Toast.LENGTH_SHORT).show();
                     }
@@ -22,4 +23,4 @@ Onde handler:
                     }
                 }
             }
-        };
+    };
