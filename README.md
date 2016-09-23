@@ -5,7 +5,7 @@ AndroidDialog.show(Activity.this, AndroidDialog.Type.ERROR, "Title", "Message", 
 
 Onde handler:
 
-final Handler handler = new Handler() {
+        final Handler handler = new Handler() {
 
             @Override
             public void handleMessage(Message msg) {
