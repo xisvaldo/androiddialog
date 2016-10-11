@@ -32,7 +32,8 @@ public class AndroidDialog {
     public enum Result {
         OK,
         YES,
-        NO
+        NO,
+        CANCEL
     }
 
     public static void show(Activity activity, Type type, String title,

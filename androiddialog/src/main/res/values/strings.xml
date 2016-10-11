@@ -3,4 +3,5 @@
     <string name="generalOK">OK</string>
     <string name="generalYes">SIM</string>
     <string name="generalNo">NÃO</string>
+    <string name="generalCancel">CANCELAR</string>
 </resources>
