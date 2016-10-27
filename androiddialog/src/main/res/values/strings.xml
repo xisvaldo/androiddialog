@@ -4,4 +4,5 @@
     <string name="generalYes">SIM</string>
     <string name="generalNo">NÃO</string>
     <string name="generalCancel">CANCELAR</string>
+    <string name="invalidCPF">CPF inválido</string>
 </resources>
