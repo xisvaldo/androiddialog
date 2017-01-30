@@ -9,7 +9,7 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/header_success" >
+        android:background="@color/green" >
 
         <TextView
             android:id="@+id/title"
