@@ -130,7 +130,7 @@ public class AndroidInputDialog {
                 input.setInputType(EditorInfo.TYPE_CLASS_TEXT);
             }
             else if (type == InputType.NUMBER) {
-                input.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
+                input.setInputType(EditorInfo.TYPE_CLASS_NUMBER | EditorInfo.TYPE_NUMBER_FLAG_DECIMAL);
             }
         }
 
