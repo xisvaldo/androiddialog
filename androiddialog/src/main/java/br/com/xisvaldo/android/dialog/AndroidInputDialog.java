@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.io.IOException;
 
 import br.com.xisvaldo.android.dialog.masks.CPFMask;
+import br.com.xisvaldo.android.dialog.masks.CurrencyMask;
 
 /**
  * Created by leonardo.borges on 27/09/2016.
@@ -35,18 +36,25 @@ public class AndroidInputDialog {
     public enum InputType {
         TEXT,
         NUMBER,
+        CURRENCY,
+        CPF,
         PASSWORD
     }
 
     public static void show(Activity activity, InputType type, String title,
-                            String message, String placeholder, Handler handler) throws IOException {
+                            String message, String placeholder, Handler handler, boolean useCPF) throws IOException {
 
-        show(activity, type, title, message, placeholder, handler, false);
+        if (useCPF) {
+            show(activity, InputType.CPF, title, message, placeholder, handler, false);
+        }
+        else {
+            show(activity, type, title, message, placeholder, handler);
+        }
     }
 
 
-    public static void show(Activity activity, InputType type, String title,
-                            String message, String placeholder, Handler handler, final boolean useCPFMask) throws IOException {
+    public static void show(Activity activity, final InputType type, String title,
+                            String message, String placeholder, Handler handler) throws IOException {
 
         if (title.length() > MAX_TITLE_LENGTH) {
             throw new IOException("Max allowed title length is " + MAX_TITLE_LENGTH + ".");
@@ -70,8 +78,13 @@ public class AndroidInputDialog {
         final EditText input = (EditText) dialogView.findViewById(R.id.input);
         input.getBackground().mutate().setColorFilter(activity.getResources().getColor(R.color.lightBlue), PorterDuff.Mode.SRC_ATOP);
 
-        if (useCPFMask) {
+        if (type == InputType.CPF) {
+            input.setInputType(EditorInfo.TYPE_CLASS_NUMBER);
             input.addTextChangedListener(CPFMask.insert(input));
+        }
+        else if (type == InputType.CURRENCY) {
+            input.setInputType(EditorInfo.TYPE_CLASS_NUMBER | EditorInfo.TYPE_NUMBER_FLAG_DECIMAL);
+            input.addTextChangedListener(new CurrencyMask(input));
         }
 
         Button cancelButton = (Button) dialogView.findViewById(R.id.cancel);
@@ -85,7 +98,7 @@ public class AndroidInputDialog {
                     return;
                 }
 
-                if (useCPFMask) {
+                if (type == InputType.CPF) {
                     String cpf = CPFMask.unmask(input.getText().toString());
 
                     if (!CPFMask.validateCPF(cpf)) {
@@ -110,7 +123,12 @@ public class AndroidInputDialog {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                responseHandler.sendEmptyMessage(AndroidDialog.Result.CANCEL.ordinal());
+                Bundle args = new Bundle();
+                args.putInt("RESULT", AndroidDialog.Result.CANCEL.ordinal());
+
+                Message msg = new Message();
+                msg.setData(args);
+                responseHandler.sendMessage(msg);
                 dialog.dismiss();
             }
         });
