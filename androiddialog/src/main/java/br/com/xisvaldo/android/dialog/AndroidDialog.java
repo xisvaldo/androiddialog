@@ -81,7 +81,7 @@ public class AndroidDialog {
                 }
             });
 
-            header.setBackgroundColor(activity.getColor(R.color.yellow));
+            header.setBackgroundColor(activity.getResources().getColor(R.color.yellow));
 
             okButton.setVisibility(View.GONE);
 
@@ -97,13 +97,13 @@ public class AndroidDialog {
             });
 
             if (type == Type.INFO) {
-                header.setBackgroundColor(activity.getColor(R.color.lightBlue));
+                header.setBackgroundColor(activity.getResources().getColor(R.color.lightBlue));
             }
             else if (type == Type.SUCCESS) {
-                header.setBackgroundColor(activity.getColor(R.color.green));
+                header.setBackgroundColor(activity.getResources().getColor(R.color.green));
             }
             else {
-                header.setBackgroundColor(activity.getColor(R.color.red));
+                header.setBackgroundColor(activity.getResources().getColor(R.color.red));
             }
 
             yesButton.setVisibility(View.GONE);
